@@ -9,9 +9,30 @@
   </ul>
   <div class="tab-content">
 
-    <div id="start" class="tab-pane fade">
+    <div id="start" class="tab-pane fade in active">
       <h3>Start Node</h3>
-      <p><button type="button" class="btn btn-info">Start</button></p>
+
+      <p>   <form action="/startall" method="post" id="startall">
+
+          <button type="submit" class="btn btn-info">Start All</button>
+    </form>
+         <form action="/start" method="post" id="submitform">
+          <button type="submit" class="btn btn-info">Start</button></p>
+                        <div class="container">
+
+                <div class="list-group">
+                    {% for i in vm %}
+                        <input type="checkbox" name="check" value="{{ i }}" id="{{ i }}"/>
+                        <label class="list-group-item" for="{{ i }}">{{ i }}</label>
+                    {% endfor %}
+
+                </div>
+
+
+            </div>
+        </form>
+
+
     </div>
 
   </div>
