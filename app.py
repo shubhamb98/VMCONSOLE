@@ -17,15 +17,26 @@ def render_start():
 
 @app.route('/startall', methods=['POST'])
 def startall():
-    # y=request.form.getlist('check')
-    # print(y)
-    return "Hello World!"
+    vm_nodes = ""
+    for i in VMs:
+        vm_nodes += """\\\\""" + i + ' '
+    # print(vm_nodes)
+    query = "Psexec.exe " + vm_nodes + "-accepteula -u DDS-NA\qaadmin -p qatest -s -i 2 -d \\\\ny-vpc-sgrid.na.rtdom.net\GRID_BINARIES\starttemp.bat"
+    print(query)
+    # os.system(query)
+    return redirect(url_for('render_start'))
 
 @app.route('/start', methods=['POST'])
 def start():
     y=request.form.getlist('check')
-    print(y)
-    return "Hello World"
+    vm_nodes = ""
+    for i in y:
+        vm_nodes += """\\\\""" + i + ' '
+    print(vm_nodes)
+    query = "Psexec.exe " + vm_nodes + "-accepteula -u DDS-NA\qaadmin -p qatest -s -i 2 -d \\\\ny-vpc-sgrid.na.rtdom.net\GRID_BINARIES\starttemp.bat"
+    print(query)
+    #os.system(query)
+    return redirect(url_for('render_start'))
 
 
 @app.route('/render_stop')
